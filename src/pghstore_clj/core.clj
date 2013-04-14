@@ -1,5 +1,6 @@
 (ns pghstore-clj.core
-  (:require [clojure.string :as st])
+  (:require [clojure.string :as st]
+            [plumbing.core :refer :all])
   (:import [org.postgresql.util PGobject]))
 
 (defprotocol THstorable
@@ -29,3 +30,12 @@
                          (map #(st/replace % #"\"" "") (st/split v #"=>")))
                        (st/split (.getValue this) #", "))]
               [(keyword k) v])))))
+
+(extend-type java.util.HashMap
+  FHstorable
+  (from-hstore 
+    [this]
+    (->> this
+         (into {})
+         keywordize-map)))
+
