@@ -1,4 +1,4 @@
-(defproject pghstore-clj "0.1.2"
+(defproject net.likestream/pghstore-clj "0.1.2"
   :description "Helper functions for working with PostgresSQL hstore data type in Clojure via JDBC"
   :url "http://github.com/blakesmith/pghstore-clj"
   :license {:name "Eclipse Public License"
